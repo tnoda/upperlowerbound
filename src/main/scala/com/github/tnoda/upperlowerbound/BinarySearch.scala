@@ -16,13 +16,12 @@ object BinarySearch {
       if (b - a <= 1) b
       else {
         val m = (a + b) / 2
-        if (ev.lteq(value, sorted(m))) binarySearch(a, m)
-        else binarySearch(m, b)
+        if (ev.lt(sorted(m), value)) binarySearch(m, b)
+        else binarySearch(a, m)
       }
     }
 
-    if (ev.lt(sorted(last - 1), value)) last
-    else binarySearch(first - 1, last - 1)
+    binarySearch(first - 1, last)
   }
 
   // upperBound is a version of binery search: it attempts to find the
@@ -37,11 +36,11 @@ object BinarySearch {
       if (b - a <= 1) b
       else {
         val m = (a + b) / 2
-        if (ev.lt(value, sorted(m))) binarySearch(a, m)
-        else binarySearch(m, b)
+        if (ev.lteq(sorted(m), value)) binarySearch(m, b)
+        else binarySearch(a, m)
       }
     }
 
-    binarySearch(first, last)
+    binarySearch(first - 1, last)
   }
 }
